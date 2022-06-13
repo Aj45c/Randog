@@ -1,25 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
+import DogData from './components/DogsData';
+import {React, useState, useEffect} from 'react';
 
 function App() {
+
+    const [dog, setDog] = useState(null);
+
+    const getData = async () => {
+      const response = await fetch('https://dog.ceo/api/breeds/image/random');
+
+      const data = await response.json();
+
+      setDog(data);
+    };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <h1>Dog Picture Generater</h1>
+      <input type = 'button' value = 'Click me!' onClick = {getData}/>
+      <DogData dog = {dog} />
     </div>
   );
 }
 
 export default App;
+
