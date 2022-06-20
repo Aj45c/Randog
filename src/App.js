@@ -1,7 +1,7 @@
-import logo from './logo.svg';
+
 import './App.css';
 import DogData from './components/DogsData';
-import {React, useState} from 'react';
+import {React, useState, useEffect} from 'react';
 
 function App() {
 
@@ -14,13 +14,16 @@ function App() {
 
       setDog(data);
     };
-
+    useEffect(() => {
+      getData();
+    
+    } , []);
   return (
     <div className="App">
 
       <h1>Dog Picture Generater</h1>
       <input type = 'button' value = 'Click me!' onClick = {getData}/>
-      <DogData dog = {dog} />
+      <DogData dog = {dog.message} />
     </div>
   );
 }
